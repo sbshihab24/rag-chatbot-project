@@ -82,8 +82,6 @@ def get_rag_pipeline():
 # ---------------- Main App ----------------
 def main():
     st.set_page_config(page_title="RAG Chatbot", page_icon="🤖", layout="wide")
-
-    # ... (the rest of the setup is the same) ...
     st.markdown(custom_css, unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center;'><span style='font-size:3rem;'>🤖</span> RAG Chatbot</h1>", unsafe_allow_html=True)
     st.write("Ask questions based on your knowledge base.")
@@ -93,13 +91,13 @@ def main():
     if "history" not in st.session_state:
         st.session_state.history = []
 
-    # Display chat history from session state
+    # Display chat history
     for q, a in st.session_state.history:
         with st.chat_message("user", avatar="👤"):
             st.markdown(q)
         with st.chat_message("assistant", avatar="🤖"):
             st.markdown(a)
-    
+
     # Get new user input
     query = st.chat_input("Enter your question here:")
 
@@ -107,15 +105,17 @@ def main():
         # Add user's query to history
         st.session_state.history.append((query, ""))
 
-        # Display the thinking spinner while getting the answer
+        # Display spinner while generating answer
         with st.spinner("Generating answer..."):
             answer = rag.query(query, history=st.session_state.history[:-1])
-            # Update the last entry in history with the actual answer
             st.session_state.history[-1] = (query, answer)
+
+        # No need to call st.rerun()
+
 
         # --- THIS IS THE FIX ---
         # Force the app to rerun from top to bottom to display the new message
-        st.rerun()
+
 
 if __name__ == "__main__":
     main()
