@@ -18,7 +18,6 @@ This is a **Retrieval-Augmented Generation (RAG) Chatbot** built with Python and
 ---
 
 ## Project Structure
-
 rag-chatbot-project/
 │
 ├─ config/
@@ -48,6 +47,8 @@ rag-chatbot-project/
 ├─ requirements.txt
 ├─ .env # Environment variables (not pushed)
 └─ README.md
+
+
 
 
 ---
