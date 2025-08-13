@@ -1,0 +1,9 @@
+streamlit
+PyMuPDF
+python-docx
+numpy
+faiss-cpu
+requests
+PyYAML
+tqdm
+sentencepiece

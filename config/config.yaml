@@ -1,0 +1,47 @@
+baai_embedding_model_name: "BAAI/bge-base-en-v1.5"
+
+gemini:
+  api_key: "${GEMINI_API_KEY}"   # placeholder linked to your .env variable
+  base_url: "https://generativelanguage.googleapis.com/v1beta"
+  model: "gemini-2.5-pro"
+
+data:
+  docs_path: "data/docs"
+  processed_path: "data/processed"
+
+vector_store:
+  path: "./embeddings_db/faiss.index"
+  metadata_path: "./embeddings_db/metadata.pkl"
+
+embedding:
+  chunk_size: 500
+  chunk_overlap: 50
+
+query:
+  top_k: 5
+
+
+
+# baai_embedding_model_name: "BAAI/bge-base-en-v1.5"
+
+# gemini:
+#   api_key: ""
+#   base_url: "https://generativelanguage.googleapis.com/v1beta"
+#   model: "gemini-2.5-pro"
+
+# data:
+#   docs_path: "data/docs"
+#   processed_path: "data/processed"
+
+# vector_store:
+#   path: "./embeddings_db/faiss.index"
+#   metadata_path: "./embeddings_db/metadata.pkl"
+
+# embedding:
+#   chunk_size: 500
+#   chunk_overlap: 50
+
+# query:
+#   top_k: 5
+
+
