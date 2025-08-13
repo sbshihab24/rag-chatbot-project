@@ -1,9 +1,8 @@
 streamlit
-PyMuPDF
-python-docx
-numpy
+pyyaml
+transformers
+torch
+sentence-transformers
 faiss-cpu
+python-dotenv
 requests
-PyYAML
-tqdm
-sentencepiece

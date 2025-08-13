@@ -1,14 +1,27 @@
-import sys
+
 import os
+import sys
 import streamlit as st
+from dotenv import load_dotenv
 
-# This path addition is still important
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# 1️⃣ Load environment variables from .env (must be in project root)
+load_dotenv()
 
-# This import is now used implicitly by RAGPipeline and its components
+# 2️⃣ Get your Gemini API key from environment
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if GEMINI_API_KEY is None:
+    st.error("GEMINI_API_KEY not found! Please check your .env file.")
+    st.stop()
+
+# 3️⃣ Add project root to sys.path for local imports
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+# 4️⃣ Import project modules
 from utils.config_loader import config
 from core.query import RAGPipeline
 
+# 5️⃣ Optional: override config key with environment variable if needed
+config["gemini"]["api_key"] = GEMINI_API_KEY
 # ---------------- Custom CSS ----------------
 custom_css = """
 <style>
@@ -65,7 +78,7 @@ def get_rag_pipeline():
         st.error(f"Failed to initialize RAG pipeline: {e}")
         st.stop()
 
-        
+
 # ---------------- Main App ----------------
 def main():
     st.set_page_config(page_title="RAG Chatbot", page_icon="🤖", layout="wide")
